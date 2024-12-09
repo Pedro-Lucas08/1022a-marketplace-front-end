@@ -4,10 +4,11 @@ function CadastroProduto(){
     const navigate = useNavigate()
     const [id, setId] = useState("")
     const [nome, setNome] = useState("")
-    const [marca, setMarca] = useState("")
     const [tamanho, setTamanho] = useState("")
-    const [modelo, setmodelo] = useState("")
+    const [preco, setPreco] = useState("")
     const [imagem, setImagem] = useState("")
+    const [marca, setMarca] = useState("")
+    const [modelo, setmodelo] = useState("")
     async function handleForm(event: FormEvent){
         event.preventDefault()
         try{
@@ -17,12 +18,13 @@ function CadastroProduto(){
                     "Content-Type":"application/json"
                 },
                 body:JSON.stringify({
-                    id: id,
+                    id:id,
                     nome: nome,
-                    marca: marca,
                     tamanho: tamanho,
-                    modelo: modelo,
+                    preco: preco,
                     imagem: imagem,
+                    marca: marca,
+                    modelo: modelo,
                 })
             })
             if(resposta.status!=500){
@@ -45,18 +47,22 @@ function CadastroProduto(){
     function handleNome(event: ChangeEvent<HTMLInputElement>) {
         setNome(event.target.value)
     }
-    function handleMarca(event: ChangeEvent<HTMLInputElement>) {
-        setMarca(event.target.value)
-    }
     function handleTamanho(event: ChangeEvent<HTMLInputElement>) {
         setTamanho(event.target.value)
     }
-    function handleModelo(event: ChangeEvent<HTMLInputElement>) {
-        setmodelo(event.target.value)
+    function handlePreco(event: ChangeEvent<HTMLInputElement>) {
+        setPreco(event.target.value)
     }
     function handleImagem(event: ChangeEvent<HTMLInputElement>) {
         setImagem(event.target.value)
     }
+    function handleMarca(event: ChangeEvent<HTMLInputElement>) {
+        setMarca(event.target.value)
+    }
+    function handleModelo(event: ChangeEvent<HTMLInputElement>) {
+        setmodelo(event.target.value)
+    }
+   
     return(
         <>
             <h1>Cadastro de Produtos</h1>
@@ -82,7 +88,7 @@ function CadastroProduto(){
         />
     </div>
     <div>
-        <label htmlFor="marca">Descrição:</label>
+        <label htmlFor="marca">Marca:</label>
         <input
             placeholder="Marca"
             type="text"
@@ -109,6 +115,16 @@ function CadastroProduto(){
             name="modelo"
             id="modelo"
             onChange={handleModelo}
+        />
+    </div>
+    <div>
+        <label htmlFor="preco">Preço:</label>
+        <input
+            placeholder="Preco"
+            type="text"
+            name="preco"
+            id="preco"
+            onChange={handlePreco}
         />
     </div>
     <div>
