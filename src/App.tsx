@@ -26,12 +26,12 @@ function App() {
   // useEffect para carregar produtos e usuários
   useEffect(() => {
     // Buscar os produtos
-    fetch("https://one022a-marketplace-e90o.onrender.com/produtos")
+    fetch("https://one022a-marketplace-1esb.onrender.com/produtos")
       .then(resposta => resposta.json())
       .then(dados => setProdutos(dados))
 
     // Buscar os usuários
-    fetch("https://one022a-marketplace-e90o.onrender.com/usuarios")
+    fetch("https://one022a-marketplace-1esb.onrender.com/usuarios")
       .then(resposta => resposta.json())
       .then(dados => setUsuarios(dados))
   }, [])
