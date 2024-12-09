@@ -2,25 +2,27 @@ import {  ChangeEvent, FormEvent, useState } from "react"
 import { useNavigate } from 'react-router-dom';
 function CadastroProduto(){
     const navigate = useNavigate()
-    const [id,setId] = useState("")
-    const [nome,setNome] = useState("")
-    const [descricao,setDescricao] = useState("")
-    const [preco,setPreco] = useState("")
-    const [imagem,setImagem] = useState("")
-    async function handleForm(event:FormEvent){
+    const [id, setId] = useState("")
+    const [nome, setNome] = useState("")
+    const [marca, setMarca] = useState("")
+    const [tamanho, setTamanho] = useState("")
+    const [modelo, setmodelo] = useState("")
+    const [imagem, setImagem] = useState("")
+    async function handleForm(event: FormEvent){
         event.preventDefault()
         try{
-            const resposta = await fetch("http://localhost:8000/produtos",{
+            const resposta = await fetch("https://one022a-marketplace-1esb.onrender.com/produtos",{
                 method:"POST",
                 headers:{
                     "Content-Type":"application/json"
                 },
                 body:JSON.stringify({
-                    id:id,
-                    nome:nome,
-                    descricao:descricao,
-                    preco:preco,
-                    imagem:imagem
+                    id: id,
+                    nome: nome,
+                    marca: marca,
+                    tamanho: tamanho,
+                    modelo: modelo,
+                    imagem: imagem,
                 })
             })
             if(resposta.status!=500){
@@ -37,42 +39,91 @@ function CadastroProduto(){
         }
         
     }
-    function handleId(event:ChangeEvent<HTMLInputElement>){
+    function handleId(event: ChangeEvent<HTMLInputElement>) {
         setId(event.target.value)
     }
-    function handleNome(event:ChangeEvent<HTMLInputElement>){
+    function handleNome(event: ChangeEvent<HTMLInputElement>) {
         setNome(event.target.value)
     }
-    function handleDescricao(event:ChangeEvent<HTMLInputElement>){
-        setDescricao(event.target.value)
+    function handleMarca(event: ChangeEvent<HTMLInputElement>) {
+        setMarca(event.target.value)
     }
-    function handlePreco(event:ChangeEvent<HTMLInputElement>){
-        setPreco(event.target.value)
+    function handleTamanho(event: ChangeEvent<HTMLInputElement>) {
+        setTamanho(event.target.value)
     }
-    function handleImagem(event:ChangeEvent<HTMLInputElement>){
+    function handleModelo(event: ChangeEvent<HTMLInputElement>) {
+        setmodelo(event.target.value)
+    }
+    function handleImagem(event: ChangeEvent<HTMLInputElement>) {
         setImagem(event.target.value)
     }
     return(
         <>
-            <h1>Meu Componente de Cadastro de Produtos</h1>
-            <form onSubmit={handleForm}>
-                <div>
-                    <input placeholder="Id" type="text" name="id" id="id" onChange={handleId} />
-                </div>
-                <div>
-                    <input placeholder="Nome" type="text" name="nome" id="nome" onChange={handleNome} />
-                </div>
-                <div>
-                    <input placeholder="Descrição" type="text" name="descricao" id="descricao" onChange={handleDescricao} />
-                </div>
-                <div>
-                    <input placeholder="Preço" type="text" name="preco" id="preco" onChange={handlePreco} />
-                </div>
-                <div>
-                    <input placeholder="URL Imagem" type="text" name="imagem" id="imagem" onChange={handleImagem} />
-                </div>
-                <input type="submit" value="Cadastrar" />
-            </form>
+            <h1>Cadastro de Produtos</h1>
+<form onSubmit={handleForm}>
+    <div>
+        <label htmlFor="id">ID:</label>
+        <input
+            placeholder="ID"
+            type="text"
+            name="id"
+            id="id"
+            onChange={handleId}
+        />
+    </div>
+    <div>
+        <label htmlFor="nome">Nome:</label>
+        <input
+            placeholder="Nome"
+            type="text"
+            name="nome"
+            id="nome"
+            onChange={handleNome}
+        />
+    </div>
+    <div>
+        <label htmlFor="marca">Descrição:</label>
+        <input
+            placeholder="Marca"
+            type="text"
+            name="marca"
+            id="marca"
+            onChange={handleMarca}
+        />
+    </div>
+    <div>
+        <label htmlFor="tamanho">Tamanho:</label>
+        <input
+            placeholder="Tamanho"
+            type="text"
+            name="tamanho"
+            id="tamanho"
+            onChange={handleTamanho}
+        />
+    </div>
+    <div>
+        <label htmlFor="modelo">Modelo:</label>
+        <input
+            placeholder="Modelo"
+            type="text"
+            name="modelo"
+            id="modelo"
+            onChange={handleModelo}
+        />
+    </div>
+    <div>
+        <label htmlFor="imagem">URL da Imagem:</label>
+        <input
+            placeholder="URL da Imagem"
+            type="text"
+            name="imagem"
+            id="imagem"
+            onChange={handleImagem}
+        />
+    </div>
+    <button type="submit">Cadastrar</button>
+</form>
+
         </>
     )
 }

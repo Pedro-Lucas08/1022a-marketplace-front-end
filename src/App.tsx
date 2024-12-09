@@ -5,9 +5,11 @@ import { Link } from 'react-router-dom'
 type ProdutoType = {
   id: number,
   nome: string,
+  tamanho: string,
   preco: string,
-  descricao: string,
-  imagem: string
+  imagem: string,
+  marca: string,
+  modelo: string,
 }
 
 // Tipo para usuários
@@ -39,9 +41,7 @@ function App() {
   return (
     <>
 
-
       <header className="site-header">
-
 
         <nav className="navigation">
           <ul>
@@ -59,18 +59,19 @@ function App() {
       </header>
       {/* Listagem de Produtos */}
       <div className="produtos-container">
-      <Link to="/cadastro-produto">Cadastro de Produto</Link>
         <h1 className='titulo-produto'>Produtos</h1>
         <div className="produtos-list">
           {
             produtos.map(produto => (
               <div key={produto.id} className="produto-item">
-                <h3 className="produto-nome">{produto.nome}</h3> {/* Use h3 para o nome do produto */}
+                <h3 className="produto-nome">{produto.nome}</h3>
+                <p className="produto-marca">{produto.marca}</p>
+                <p className="produto-tamanho">{produto.tamanho}</p>
+                <p className="produto-preco">{produto.preco}</p>
+                <p className="produto-modelo">{produto.modelo}</p>
                 <div className='container-imagem'>
                   <img src={produto.imagem} alt="Imagem do produto" />
                 </div>
-                <p className="produto-preco">{produto.preco}</p>
-                <p className="produto-descricao">{produto.descricao}</p>
                 <button className="botao-comprar">Comprar</button>
               </div>
             ))
