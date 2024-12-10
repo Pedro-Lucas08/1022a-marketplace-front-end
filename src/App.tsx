@@ -81,7 +81,7 @@ function App() {
 
       {/* Listagem de Usuários */}
       <div className="usuarios-container">
-        <h1 className='titulo-usuario'>Usuários</h1>
+        <h1 className='titulo-usuario'></h1>
         <div className="usuarios-list"> {/* Adicionando wrapper */}
           {
             usuarios.map(usuario => (
