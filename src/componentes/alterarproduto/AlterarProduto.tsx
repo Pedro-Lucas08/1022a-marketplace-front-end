@@ -8,15 +8,19 @@ function AlterarProduto(){
         .then(resposta=>resposta.json())
         .then(dados=>{
             setNome(dados.nome)
-            setDescricao(dados.descricao)
+            setTamanho(dados.tamanho)
             setPreco(dados.preco)
+            setMarca(dados.marca)
+            setModelo(dados.modelo)
             setImagem(dados.imagem)
         })
     },[])
     const navigate = useNavigate()
     const [nome,setNome] = useState("")
-    const [descricao,setDescricao] = useState("")
+    const [tamanho,setTamanho] = useState("")
     const [preco,setPreco] = useState("")
+    const [marca,setMarca] = useState("")
+    const [modelo,setModelo] = useState("")
     const [imagem,setImagem] = useState("")
     async function handleForm(event:FormEvent){
         event.preventDefault()
@@ -28,7 +32,9 @@ function AlterarProduto(){
                 },
                 body:JSON.stringify({
                     nome:nome,
-                    descricao:descricao,
+                    tamanho:tamanho,
+                    marca:marca,
+                    modelo:modelo,
                     preco:preco,
                     imagem:imagem
                 })
@@ -50,8 +56,14 @@ function AlterarProduto(){
     function handleNome(event:ChangeEvent<HTMLInputElement>){
         setNome(event.target.value)
     }
-    function handleDescricao(event:ChangeEvent<HTMLInputElement>){
-        setDescricao(event.target.value)
+    function handleTamanho(event:ChangeEvent<HTMLInputElement>){
+        setTamanho(event.target.value)
+    }
+    function handleMarca(event:ChangeEvent<HTMLInputElement>){
+        setMarca(event.target.value)
+    }
+    function handleModelo(event:ChangeEvent<HTMLInputElement>){
+        setModelo(event.target.value)
     }
     function handlePreco(event:ChangeEvent<HTMLInputElement>){
         setPreco(event.target.value)
@@ -72,8 +84,16 @@ function AlterarProduto(){
                     <input placeholder="Nome" type="text" name="nome" id="nome" value={nome} onChange={handleNome} />
                 </div>
                 <div>
-                    <label htmlFor="descricao">Descrição</label>
-                    <input placeholder="Descrição" type="text" name="descricao" id="descricao" value={descricao} onChange={handleDescricao} />
+                    <label htmlFor="tamanho">Descrição</label>
+                    <input placeholder="Tamanho" type="text" name="tamanho" id="tamanho" value={tamanho} onChange={handleTamanho} />
+                </div>
+                <div>
+                    <label htmlFor="marca">Descrição</label>
+                    <input placeholder="Marca" type="text" name="marca" id="marca" value={marca} onChange={handleMarca} />
+                </div>
+                <div>
+                    <label htmlFor="modelo">Descrição</label>
+                    <input placeholder="Modelo" type="text" name="modelo" id="modelo" value={modelo} onChange={handleModelo} />
                 </div>
                 <div>
                     <label htmlFor="preco">Preço</label>

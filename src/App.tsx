@@ -5,8 +5,10 @@ import { Link} from 'react-router-dom'
 type ProdutoType = {
   id: number,
   nome: string,
+  tamanho:string,
   preco: string,
-  descricao: string,
+  marca: string,
+  modelo:string,
   imagem: string
 }
 
@@ -50,8 +52,10 @@ function App() {
                 <div className='container-imagem'>
                   <img src={produto.imagem} alt="Imagem do produto" />
                 </div>
+                <p className="produto-tamanho">{produto.tamanho}</p>
                 <p className="produto-preco">{produto.preco}</p>
-                <p className="produto-descricao">{produto.descricao}</p>
+                <p className="produto-marca">{produto.marca}</p>
+                <p className="produto-modelo">{produto.modelo}</p>
                 <button className="botao-comprar">Comprar</button>
                 <button onClick={() => handleExcluir(produto.id)}>Excluir</button>
                 <Link to={`/alterar-produto/${produto.id}`} className="botao-comprar">Alterar</Link>
