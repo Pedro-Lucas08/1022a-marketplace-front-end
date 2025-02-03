@@ -66,15 +66,15 @@ function CadastroProduto(){
                     <input placeholder="Nome" type="text" name="nome" id="nome" value={nome} onChange={handleNome} />
                 </div>
                 <div>
-                    <label htmlFor="tamanho">Descrição</label>
+                    <label htmlFor="tamanho">Tamanho</label>
                     <input placeholder="Tamanho" type="text" name="tamanho" id="tamanho" value={tamanho} onChange={handleTamanho} />
                 </div>
                 <div>
-                    <label htmlFor="marca">Descrição</label>
+                    <label htmlFor="marca">Marca</label>
                     <input placeholder="Marca" type="text" name="marca" id="marca" value={marca} onChange={handleMarca} />
                 </div>
                 <div>
-                    <label htmlFor="modelo">Descrição</label>
+                    <label htmlFor="modelo">Modelo</label>
                     <input placeholder="Modelo" type="text" name="modelo" id="modelo" value={modelo} onChange={handleModelo} />
                 </div>
                 <div>
