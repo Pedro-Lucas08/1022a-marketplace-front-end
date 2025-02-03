@@ -1,71 +1,69 @@
-import { useEffect, useState } from 'react'
-import './App.css'
-import { Link} from 'react-router-dom'
+import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import './App.css';
+
 // Tipo para produtos
 type ProdutoType = {
-  id: number,
-  nome: string,
-  tamanho:string,
-  preco: string,
-  marca: string,
-  modelo:string,
-  imagem: string
-}
+  id: number;
+  nome: string;
+  tamanho: string;
+  preco: string;
+  marca: string;
+  modelo: string;
+  imagem: string;
+};
 
 function App() {
-  const [produtos, setProdutos] = useState<ProdutoType[]>([])
+  const [produtos, setProdutos] = useState<ProdutoType[]>([]);
 
-  // useEffect para carregar produtos e usuários
   useEffect(() => {
-    // Buscar os produtos
     fetch("https://one022a-marketplace-1esb.onrender.com/produtos")
-      .then(resposta => resposta.json())
-      .then(dados => setProdutos(dados))
-  }, [])
+      .then(res => res.json())
+      .then(data => setProdutos(data));
+  }, []);
 
-  function handleExcluir(id:number){
-    alert(`Excluir o produto com id ${id}`)
-    fetch(`https://one022a-marketplace-1esb.onrender.com/produtos/${id}`, {
-      method: 'DELETE'
-    })
-    .then(resposta=>{
-      if(resposta.status ===200){
-        alert("Produto excluído com sucesso")
-        window.location.reload()
-      }else{
-        alert("Erro ao excluir o produto: Confira o terminal do backend")
-      }
-    })
+  function handleExcluir(id: number) {
+    if (window.confirm(`Deseja realmente excluir o produto ${id}?`)) {
+      fetch(`https://one022a-marketplace-1esb.onrender.com/produtos/${id}`, {
+        method: 'DELETE',
+      })
+        .then(res => {
+          if (res.status === 200) {
+            setProdutos(produtos.filter(produto => produto.id !== id));
+            alert("Produto excluído com sucesso");
+          } else {
+            alert("Erro ao excluir o produto. Confira o backend");
+          }
+        });
+    }
   }
 
   return (
-    <>
-      {/* Listagem de Produtos */}
-      <div className="produtos-container">
-      <Link to="/cadastro-produto">Cadastro de Produto</Link>
-        <h1 className='titulo-produto'>Produtos</h1>
-        <div className="produtos-list">
-          {
-            produtos.map(produto => (
-              <div key={produto.id} className="produto-item">
-                <h3 className="produto-nome">{produto.nome}</h3> {/* Use h3 para o nome do produto */}
-                <div className='container-imagem'>
-                  <img src={produto.imagem} alt="Imagem do produto" />
-                </div>
-                <p className="produto-tamanho">{produto.tamanho}</p>
-                <p className="produto-preco">{produto.preco}</p>
-                <p className="produto-marca">{produto.marca}</p>
-                <p className="produto-modelo">{produto.modelo}</p>
-                <button className="botao-comprar">Comprar</button>
-                <button onClick={() => handleExcluir(produto.id)}>Excluir</button>
-                <Link to={`/alterar-produto/${produto.id}`} className="botao-comprar">Alterar</Link>
-              </div>
-            ))
-          }
-        </div>
+    <div className="container">
+      <header className="header">
+        <h1>Produtos</h1>
+        <Link to="/cadastro-produto" className="botao">Cadastrar Produto</Link>
+      </header>
+
+      <div className="produtos-grid">
+        {produtos.map(produto => (
+          <div key={produto.id} className="produto-card">
+            <img src={produto.imagem} alt={produto.nome} className="produto-img" />
+            <h3>{produto.nome}</h3>
+            <p><strong>Marca:</strong> {produto.marca}</p>
+            <p><strong>Modelo:</strong> {produto.modelo}</p>
+            <p><strong>Tamanho:</strong> {produto.tamanho}</p>
+            <p className="preco">R$ {produto.preco}</p>
+            <div className="botoes">
+              <button className="botao-comprar">Comprar</button>
+              <button className="botao-excluir" onClick={() => handleExcluir(produto.id)}>Excluir</button>
+              <Link to={`/alterar-produto/${produto.id}`} className="botao">Alterar</Link>
+            </div>
+          </div>
+        ))}
       </div>
-    </>
-  )
+    </div>
+  );
 }
 
-export default App
+export default App;
