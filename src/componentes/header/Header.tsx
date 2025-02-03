@@ -11,9 +11,6 @@ function Header() {
           <li>
             <Link to="/">Home</Link>
           </li>
-          <li>
-            <Link to="/cadastro-produto">Cadastro de Produto</Link>
-          </li>
         </ul>
       </nav>
       <div className="header-actions">
