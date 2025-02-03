@@ -1,7 +1,3 @@
-
-
-
-
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -9,7 +5,7 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  background-color: #1a1a2e;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -19,89 +15,102 @@
   justify-content: center;
 }
 
+body {
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  box-sizing: border-box;
+  background-color: #1a1a2e;
+  color: #e0e0e0;
+}
 
 a {
   font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
+  color: #b3b3ff;
+  text-decoration: none;
 }
 a:hover {
-  color: #535bf2;
+  color: #747bff;
 }
-
-body {
-  margin: 0; /* Remove margens do body */
-  padding: 0; /* Remove padding do body */
-  /* outros estilos... */
-  width: 100vw;
-  box-sizing: border-box;
-}
-
 
 h1 {
-  font-size: 3.2em;
+  font-size: 2.5em;
   line-height: 1.1;
+  color: #b3b3ff;
+  text-align: center;
 }
 
 button {
   border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
+  border: none;
+  padding: 0.8em 1.5em;
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: rgb(163, 11, 11);
+  background-color: #7a36ff;
+  color: white;
   cursor: pointer;
-  transition: border-color 0.25s;
+  transition: background-color 0.3s;
 }
 button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  background-color: #5a26cc;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;}
-}
-
-form{
+form {
   display: flex;
   flex-direction: column;
-  gap: 1em;
-  width: 70vw;
-  border: 1px solid #d0d0d0;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
-  padding: 40px;
-  border-radius: 5px;
+  gap: 1.2em;
+  width: 50vw;
+  max-width: 600px;
+  background-color: #2a2a4a;
+  border: 1px solid #b3b3ff;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+  padding: 30px;
+  border-radius: 8px;
+  margin: auto;
+  margin-top: 50px;
 }
 
-form>div{
+form > div {
   display: flex;
   flex-direction: column;
   gap: 0.5em;
 }
-form>div>input{
-  padding: 10px 5px;
+
+form > div > label {
+  font-size: 1em;
+  font-weight: bold;
+  color: #b3b3ff;
+}
+
+form > div > input {
+  padding: 12px 10px;
   border-radius: 5px;
-  border: 1px solid #d0d0d0;
+  border: 1px solid #b3b3ff;
+  background-color: #1a1a2e;
+  color: white;
+  font-size: 1em;
 }
 
+form > div > input:focus {
+  border-color: #747bff;
+  outline: none;
+}
 
-.imagem-produto-reduzida{
-  width: 60px;
+.imagem-produto-reduzida {
+  width: 80px;
   height: auto;
+  border-radius: 5px;
+  margin-top: 10px;
+  border: 2px solid #b3b3ff;
 }
 
-div{
-  box-sizing: border-box;
+@media (max-width: 768px) {
+  form {
+    width: 80vw;
+    padding: 20px;
+  }
+  h1 {
+    font-size: 2em;
+  }
 }
