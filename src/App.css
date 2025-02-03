@@ -108,7 +108,9 @@ body {
 }
 
 .produto-img {
-  max-width: 100%;
+  width: 550px;
+  height: 400px;
+  object-fit: cover; /* Isso vai garantir que a imagem preencha o espaço sem distorcer */
   border-radius: 5px;
 }
 
